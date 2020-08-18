@@ -1,6 +1,6 @@
 {
   "name": "vue-material-modal-dialog",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/md-modal-dialog.ssr.js",
   "module": "dist/md-modal-dialog.esm.js",
   "unpkg": "dist/md-modal-dialog.min.js",
