@@ -8,7 +8,7 @@ a dialog have to contain an [`MdDialog`](https://vuematerial.io/components/dialo
 or a component based on an `MdDialog`.
 
 There will be a separate dialog instance nested in each such component, 
-even if different components use the same dialog or components are repeated 
+even if different components use the same dialog or if components are repeated 
 by `v-for`.
 
 This component, `MdModalDialog`, is a replacement for Vue Material's `MdDialog`.
@@ -34,6 +34,8 @@ npm install md-modal-dialog
 
 ```javascript 1.8
 import MdModalDialog from 'md-modal-dialog'
+import 'md-modal-dialog/dist/md-modal-dialog.css'
+
     ...
 // This must come after Vue.use(VueMaterial):
 Vue.use(MdModalDialog)
@@ -43,7 +45,7 @@ Vue.use(MdModalDialog)
 ### Creating a modal dialog component
 
 Just use `MdModalDialog` in the same way as `MdDialog`,
-for example for guessing a number:
+for example for an input dialog:
 
 ```vue
 <template>
@@ -96,7 +98,8 @@ for example for guessing a number:
     
     Closes the dialog and rejects the `Promise`; can return a reason.
 
-Submitting the input/dismissing `GuessDialog`:
+Extending `GuessDialog` so that the input can be submitted 
+or the dialog can be dismissed:
 
 ```vue
 <template>
@@ -110,7 +113,7 @@ Submitting the input/dismissing `GuessDialog`:
 </template>
 ```
 
-Showing `GuessDialog`:
+A button in a different component will show `GuessDialog`:
 
 ```vue
 <template>
@@ -131,9 +134,9 @@ export default {
           .then(number => {
             // Do something with the guessed number
           })
-          .catch(() => {
-            // Must be specified even if empty in order
-            // to avoid warnings at the console.
+          .catch(reason => {
+            // Must be specified even if the reason is
+            // irrelevant in order to avoid runtime warnings.
           })      
     } 
   },
