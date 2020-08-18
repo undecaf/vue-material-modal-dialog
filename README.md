@@ -26,15 +26,15 @@ It offers the following features:
 ### Installation
 
 ```
-npm install md-modal-dialog
+npm install vue-material-modal-dialog
 ```
 
 
 ### Registering `MdModalDialog`
 
 ```javascript 1.8
-import MdModalDialog from 'md-modal-dialog'
-import 'md-modal-dialog/dist/md-modal-dialog.css'
+import MdModalDialog from 'vue-material-modal-dialog'
+import 'vue-material-modal-dialog/dist/md-modal-dialog.css'
 
     ...
 // This must come after Vue.use(VueMaterial):
@@ -42,7 +42,7 @@ Vue.use(MdModalDialog)
 ```
 
 
-### Creating a modal dialog component
+### Creating modal dialog components
 
 Just use `MdModalDialog` in the same way as `MdDialog`,
 for example for an input dialog:
@@ -75,7 +75,7 @@ for example for an input dialog:
 ```
 
 
-### Using modal dialog components
+### Controlling modal dialogs
 
 `MdModalDialog` provides these functions:
 
@@ -145,7 +145,7 @@ export default {
 ```
 
 
-### Passing properties to a modal dialog
+### Passing properties to modal dialogs
 
 Let's extend the example with an upper limit to the guessed number.
 Make `GuessDialog` accept property `max`:
