@@ -12,7 +12,7 @@ even if different components use the same dialog or if components are repeated
 by `v-for`.
 
 This repository provides a new component, `MdModalDialog`, as a substitute for
- ue Material's `MdDialog`. It offers the following features:
+Vue Material's `MdDialog`. It offers the following features:
 
 +   For each dialog there is only a single instance, no matter how many components use it
 +   `MdModalDialog` supports the same props and events as [`MdDialog`](https://vuematerial.io/components/dialog)
@@ -69,7 +69,7 @@ Vue.use(MdModalDialog)
 
 ### Creating modal dialog components
 
-Just use `MdModalDialog` in the same way as `MdDialog`,
+Just use `MdModalDialog` in the same way as `MdDialog` (without `md-active`),
 for example for an input dialog:
 
 ```vue
@@ -134,7 +134,7 @@ export default {
 ### Passing properties to modal dialogs
 
 Let's extend the example with an upper limit to the guessed number.
-Make `GuessDialog` accept property `max`:
+Use `v-slot` to make `GuessDialog` accept property `max`:
 
 ```vue
 <template>
@@ -152,7 +152,7 @@ Make `GuessDialog` accept property `max`:
 ...
 ```
 
-Showing `GuessDialog` and passing `max`:
+Elsewhere, show `GuessDialog` and pass a value for `max`:
 
 ```javascript 1.8
 this.$modal.show(GuessDialog, { max: 42 })
