@@ -1,4 +1,1 @@
-/*
-let testsContext = require.context(".", true, /\.spec\.js$/);
-testsContext.keys().forEach(testsContext);
-*/
+// Required by Karma/Webpack
