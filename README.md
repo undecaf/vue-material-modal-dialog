@@ -1,8 +1,6 @@
 # A reusable modal dialog for Vue Material
 
 
-## Purpose
-
 In [Vue Material](https://vuematerial.io/), components showing
 a dialog have to contain an [`MdDialog`](https://vuematerial.io/components/dialog),
 or a component based on an `MdDialog`.
@@ -25,9 +23,10 @@ Vue Material's `MdDialog`. It offers the following features:
 
 ### Installation
 
-```
-npm install vue-material-modal-dialog
-yarn add vue-material-modal-dialog
+```shell script
+$ npm install vue-material-modal-dialog
+    or
+$ yarn add vue-material-modal-dialog
 ```
 
 
