@@ -14,8 +14,6 @@ function kebabToPascal(text) {
 
 const argv = minimist(process.argv.slice(2))
 const name = kebabToPascal(pkg.name)
-const src = 'src'
-const dist = 'dist'
 
 const baseConfig = {
     plugins: {
@@ -48,9 +46,9 @@ if (!argv.format || argv.format === 'es') {
     // ESM build to be used with webpack/rollup
     const esConfig = {
         ...baseConfig,
-        input: `${src}/index.js`,
+        input: 'src/index.js',
         output: {
-            file: `${dist}/${pkg.basename}.esm.js`,
+            file: pkg.module,
             format: 'esm',
             exports: 'named',
             sourcemap: true,
@@ -58,7 +56,7 @@ if (!argv.format || argv.format === 'es') {
         plugins: [
             ...baseConfig.plugins.preVue,
             css({
-                output: `${dist}/${pkg.basename}.css`,
+                output: pkg.style,
             }),
             vue({
                 ...baseConfig.plugins.vue,
@@ -81,19 +79,19 @@ if (!argv.format || argv.format === 'cjs') {
     // SSR build
     const umdConfig = {
         ...baseConfig,
-        input: `${src}/index.js`,
+        input: 'src/index.js',
         output: {
             compact: true,
-            file: `${dist}/${pkg.basename}.ssr.js`,
+            file: pkg.main,
             format: 'cjs',
-            name: name,
+            name,
             exports: 'named',
             sourcemap: true,
         },
         plugins: [
             ...baseConfig.plugins.preVue,
             css({
-                output: `${dist}/${pkg.basename}.css`,
+                output: pkg.style,
             }),
             vue({
                 ...baseConfig.plugins.vue,
@@ -115,12 +113,12 @@ if (!argv.format || argv.format === 'iife') {
     // Browser build
     const unpkgConfig = {
         ...baseConfig,
-        input: `${src}/wrapper.js`,
+        input: 'src/wrapper.js',
         output: {
             compact: true,
-            file: `${dist}/${pkg.basename}.min.js`,
+            file: pkg.unpkg,
             format: 'iife',
-            name: name,
+            name,
             exports: 'named',
             sourcemap: true,
         },
