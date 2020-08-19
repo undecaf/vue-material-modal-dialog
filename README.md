@@ -11,11 +11,11 @@ There will be a separate dialog instance nested in each such component,
 even if different components use the same dialog or if components are repeated 
 by `v-for`.
 
-This component, `MdModalDialog`, is a replacement for Vue Material's `MdDialog`.
-It offers the following features:
+This repository provides a new component, `MdModalDialog`, as a substitute for
+ ue Material's `MdDialog`. It offers the following features:
 
-+   Only a single instance exists per dialog, no matter how many components use it
-+   Supports the same props and events as [`MdDialog`](https://vuematerial.io/components/dialog)
++   For each dialog there is only a single instance, no matter how many components use it
++   `MdModalDialog` supports the same props and events as [`MdDialog`](https://vuematerial.io/components/dialog)
 +   Simple API: showing the dialog returns a promise which will be fulfilled or rejected
     when the dialog is closed
 +   Custom properties can be passed to a dialog
@@ -27,6 +27,7 @@ It offers the following features:
 
 ```
 npm install vue-material-modal-dialog
+yarn add vue-material-modal-dialog
 ```
 
 
@@ -39,39 +40,6 @@ import 'vue-material-modal-dialog/dist/md-modal-dialog.css'
     ...
 // This must come after Vue.use(VueMaterial):
 Vue.use(MdModalDialog)
-```
-
-
-### Creating modal dialog components
-
-Just use `MdModalDialog` in the same way as `MdDialog`,
-for example for an input dialog:
-
-```vue
-<template>
-  <md-modal-dialog>
-    <md-dialog-title>Guess a number</md-dialog-title>
-
-    <md-dialog-content>
-      <md-field>
-        <label>A number</label>
-        <md-input type="number" v-model="number" />
-      </md-field>
-    </md-dialog-content>
-
-    <md-dialog-actions>
-      <md-button>Submit</md-button>
-      <md-button>Cancel</md-button>  
-    </md-dialog-actions>
-  </md-modal-dialog>
-</template>
-
-<script>
-  export default {
-    name: 'GuessDialog',
-      ...
-  }
-</script>
 ```
 
 
@@ -98,22 +66,40 @@ for example for an input dialog:
     
     Closes the dialog and rejects the `Promise`; can return a reason.
 
-Extending `GuessDialog` so that the input can be submitted 
-or the dialog can be dismissed:
+
+### Creating modal dialog components
+
+Just use `MdModalDialog` in the same way as `MdDialog`,
+for example for an input dialog:
 
 ```vue
 <template>
   <md-modal-dialog>
-        ...
+    <md-dialog-title>Guess a number</md-dialog-title>
+
+    <md-dialog-content>
+      <md-field>
+        <label>A number</label>
+        <md-input type="number" v-model="number" />
+      </md-field>
+    </md-dialog-content>
+
     <md-dialog-actions>
       <md-button @click="$modal.submit(number)">Submit</md-button>
       <md-button @click="$modal.cancel()">Cancel</md-button>  
     </md-dialog-actions>
   </md-modal-dialog>
 </template>
+
+<script>
+  export default {
+    name: 'GuessDialog',
+      ...
+  }
+</script>
 ```
 
-A button in a different component will show `GuessDialog`:
+Some other component will show `GuessDialog` and receive the guessed number:
 
 ```vue
 <template>
