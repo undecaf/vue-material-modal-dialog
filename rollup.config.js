@@ -13,11 +13,11 @@ function kebabToPascal(text) {
 }
 
 const argv = minimist(process.argv.slice(2))
-
 const name = kebabToPascal(pkg.name)
+const src = 'src'
+const dist = 'dist'
 
 const baseConfig = {
-    input: 'src/index.js',
     plugins: {
         preVue: [
             replace({
@@ -48,8 +48,9 @@ if (!argv.format || argv.format === 'es') {
     // ESM build to be used with webpack/rollup
     const esConfig = {
         ...baseConfig,
+        input: `${src}/index.js`,
         output: {
-            file: pkg.module,
+            file: `${dist}/${pkg.basename}.esm.js`,
             format: 'esm',
             exports: 'named',
             sourcemap: true,
@@ -57,7 +58,7 @@ if (!argv.format || argv.format === 'es') {
         plugins: [
             ...baseConfig.plugins.preVue,
             css({
-                output: pkg.style,
+                output: `${dist}/${pkg.basename}.css`,
             }),
             vue({
                 ...baseConfig.plugins.vue,
@@ -80,9 +81,10 @@ if (!argv.format || argv.format === 'cjs') {
     // SSR build
     const umdConfig = {
         ...baseConfig,
+        input: `${src}/index.js`,
         output: {
             compact: true,
-            file: pkg.main,
+            file: `${dist}/${pkg.basename}.ssr.js`,
             format: 'cjs',
             name: name,
             exports: 'named',
@@ -91,7 +93,7 @@ if (!argv.format || argv.format === 'cjs') {
         plugins: [
             ...baseConfig.plugins.preVue,
             css({
-                output: pkg.style,
+                output: `${dist}/${pkg.basename}.css`,
             }),
             vue({
                 ...baseConfig.plugins.vue,
@@ -113,9 +115,10 @@ if (!argv.format || argv.format === 'iife') {
     // Browser build
     const unpkgConfig = {
         ...baseConfig,
+        input: `${src}/wrapper.js`,
         output: {
             compact: true,
-            file: pkg.unpkg,
+            file: `${dist}/${pkg.basename}.min.js`,
             format: 'iife',
             name: name,
             exports: 'named',

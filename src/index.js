@@ -1,23 +1,5 @@
-import Component from "./md-modal-dialog.vue"
+import MdModalDialog from './md-modal-dialog.vue'
 
-// Module definition for Vue.use()
-const plugin = {
-    install: Component.install
+export {
+    MdModalDialog as default,
 }
-
-if (!process.env.ES_BUILD) {
-    // Auto-install if Vue is found (eg. in browsers via <script> tag)
-    let GlobalVue
-
-    if (typeof window !== "undefined") {
-        GlobalVue = window.Vue
-    } else if (typeof global !== "undefined") {
-        GlobalVue = global.Vue
-    }
-
-    if (GlobalVue) {
-        GlobalVue.use(plugin)
-    }
-}
-
-export default Component
