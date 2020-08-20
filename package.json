@@ -1,6 +1,6 @@
 {
   "name": "vue-material-modal-dialog",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A reusable modal dialog for Vue Material",
   "keywords": [
     "vue",
@@ -27,7 +27,9 @@
     "build": "NODE_ENV=production rollup --config rollup.config.js",
     "lint": "eslint '{src,tests}/**/*.{js,vue}'",
     "lint:fix": "eslint --fix '{src,tests}/**/*.{js,vue}'",
-    "test:unit": "karma start"
+    "test:unit": "karma start",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "dependencies": {},
   "devDependencies": {
@@ -61,7 +63,8 @@
     "typeface-roboto": "0.0.75",
     "vue": "^2.6.11",
     "vue-material": "^1.0.0-beta-15",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuepress": "^1.5.3"
   },
   "peerDependencies": {
     "vue": "^2.6.1",

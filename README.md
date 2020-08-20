@@ -12,7 +12,7 @@ by `v-for`.
 This repository provides a new component, `MdModalDialog`, as a substitute for
 Vue Material's `MdDialog`. It offers the following features:
 
-+   For each dialog there is only a single instance, no matter how many components use it
++   For each dialog there is at most a single instance, no matter how many components use it
 +   `MdModalDialog` supports the same props and events as [`MdDialog`](https://vuematerial.io/components/dialog)
 +   Simple API: showing the dialog returns a promise which will be fulfilled or rejected
     when the dialog is closed
@@ -23,10 +23,18 @@ Vue Material's `MdDialog`. It offers the following features:
 
 ### Installation
 
+As a package:
+
 ```shell script
 $ npm install vue-material-modal-dialog
     or
 $ yarn add vue-material-modal-dialog
+```
+
+Included as `<script>`:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue-material-modal-dialog/dist/components.min.js"></script>
 ```
 
 
@@ -50,7 +58,8 @@ Vue.use(MdModalDialog)
     +   `{Vue component} dialog`
     +   `{Object} [props]`
     
-    Shows a dialog component, can pass properties to the dialog instance.
+    Shows a dialog component, can pass properties to the dialog instance; does not
+    preserve the dialog state across `show()` calls.
     
     Returns a `Promise` that can be fulfilled by `vm.$modal.submit()` and
     rejected by `vm.$modal.cancel()`. Both functions close the dialog.
@@ -98,7 +107,7 @@ for example for an input dialog:
 </script>
 ```
 
-Some other component will show `GuessDialog` and receive the guessed number:
+Some other component shows `GuessDialog` and receives the guessed number:
 
 ```vue
 <template>

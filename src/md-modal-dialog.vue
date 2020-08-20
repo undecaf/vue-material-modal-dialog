@@ -23,7 +23,7 @@ export default {
         this.install.installed = true
 
         const Container = Vue.component(
-            'modal-dialog-container',
+            'ModalDialogContainer',
             {
                 data() {
                     return {
@@ -69,8 +69,7 @@ export default {
             })
         }
 
-        // Register component only after Vue.use() has returned
-        setTimeout(() => Vue.component('MdModalDialog', this), 0)
+        Vue.component('MdModalDialog', this)
     },
 }
 </script>

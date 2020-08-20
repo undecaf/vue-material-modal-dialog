@@ -26,7 +26,7 @@ module.exports = function(config) {
 
         webpack: {
             ...webpackConfig,
-            entry: './tests/unit/main.js',
+            entry: undefined,   // use preprocessed files as entry points
             devtool: 'inline-source-map',
         },
 
