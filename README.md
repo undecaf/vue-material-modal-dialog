@@ -2,7 +2,6 @@
 
 ![Minified size](https://badgen.net/bundlephobia/min/vue-material-modal-dialog)
 ![Open issues](https://badgen.net/github/open-issues/undecaf/vue-material-modal-dialog)
-![Dependents](https://badgen.net/npm/dependents/vue-material-modal-dialog)
 ![Total downloads](https://badgen.net/npm/dt/vue-material-modal-dialog)
 ![License](https://badgen.net/npm/license/vue-material-modal-dialog)
 
@@ -50,7 +49,6 @@ Included as `<script>`:
 ```javascript 1.8
 import MdModalDialog from 'vue-material-modal-dialog'
 import 'vue-material-modal-dialog/dist/md-modal-dialog.css'
-
     ...
 // This must come after Vue.use(VueMaterial):
 Vue.use(MdModalDialog)
@@ -114,35 +112,19 @@ for example for an input dialog:
 </script>
 ```
 
-Some other component shows `GuessDialog` and receives the guessed number:
+In order to show `GuessDialog` and to receive the guessed number in some other component:
 
-```vue
-<template>
-    ...
-  <md-button @click="guess">Guess a number</md-button>
-    ...
-</template>
-
-<script>
-import GuessDialog from '@/components/guess-dialog'
-
-export default {
-    ...
-  methods: {
-    guess() {
-      this.$modal
-          .show(GuessDialog)
-          .then(number => {
-            // Do something with the guessed number
-          })
-          .catch(reason => {
-            // Must be specified even if the reason is
-            // irrelevant in order to avoid runtime warnings.
-          })      
-    } 
-  },
-}
-</script>
+```javascript 1.8
+vm.$modal
+    .show(GuessDialog)
+    .then(number => {
+        // Do something with the guessed number
+    })
+    .catch(reason => {
+        // In order to avoid runtime warnings, a catch clause
+        // is required even if the reason is ignored
+    })      
+} 
 ```
 
 
@@ -167,13 +149,33 @@ Use `v-slot` to make `GuessDialog` accept property `max`:
 ...
 ```
 
-Elsewhere, show `GuessDialog` and pass a value for `max`:
+In order to show `GuessDialog`, pass a `max` value and receive the guessed number:
 
 ```javascript 1.8
-this.$modal.show(GuessDialog, { max: 42 })
+vm.$modal.show(GuessDialog, { max: 42 })
            ...
 ```
 
+
+### Returning a reason on `ESC` and outside clicks
+
+If the dialog is cancellable by clicking outside and/or by `ESC` _and_ if a reason is to be
+returned in these cases then this is one possible approach (`cancel()` is one of the component's
+`methods`):
+
+```vue
+<template>
+  <md-modal-dialog @md-clicked-outside="cancel()" @keydown.esc="cancel()">
+      ...
+    <md-button @click="cancel()">Cancel</md-button>
+      ...
+  </md-modal-dialog>
+</template>
+```
+
+  
 ## License
 
-[MIT](http://opensource.org/licenses/MIT)
+Software: [MIT](http://opensource.org/licenses/MIT)
+
+Documentation: [CC-BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/)
