@@ -10,12 +10,18 @@ import MdModalDialogMock from './md-modal-dialog.mock.vue'
 Vue.use(VueMaterial)
 Vue.use(MdModalDialog)
 
+
 describe('<md-modal-dialog>', () => {
     let wrapper
 
     beforeEach(() => {
-        wrapper = mount(MdModalDialogMock)
+        wrapper = mount(MdModalDialogMock, {
+            stubs: {
+                transition: (() => ({ render(h) { return this.$options._renderChildren } }))(),
+            },
+        })
     })
+
 
     it('can be tested', () => {
     })
