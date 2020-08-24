@@ -32,6 +32,7 @@ const baseConfig = {
         postVue: [
             buble({
                 transforms: {
+                    objectAssign: 'Object.assign',
                     dangerousForOf: true,
                 },
             }),
