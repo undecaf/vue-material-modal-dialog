@@ -9,6 +9,7 @@ Vue.use(VueMaterial)
 
 window.Vue = Vue
 import('@/../dist/components.min')
+import('@/../dist/components.css')
 
 
 describe('<md-modal-dialog> (Browser)', () => {

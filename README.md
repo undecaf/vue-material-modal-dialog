@@ -1,5 +1,11 @@
 # A reusable modal dialog for Vue Material
 
+![Minified size](https://badgen.net/bundlephobia/min/vue-material-modal-dialog)
+![Open issues](https://badgen.net/github/open-issues/undecaf/vue-material-modal-dialog)
+![Dependents](https://badgen.net/npm/dependents/vue-material-modal-dialog)
+![Total downloads](https://badgen.net/npm/dt/vue-material-modal-dialog)
+![License](https://badgen.net/npm/license/vue-material-modal-dialog)
+
 
 In [Vue Material](https://vuematerial.io/), components showing
 a dialog have to contain an [`MdDialog`](https://vuematerial.io/components/dialog),
@@ -19,11 +25,9 @@ Vue Material's `MdDialog`. It offers the following features:
 +   Custom properties can be passed to a dialog
 
 
-## Usage
+## Installation
 
-### Installation
-
-As a package:
+As a module:
 
 ```shell script
 $ npm install vue-material-modal-dialog
@@ -34,11 +38,14 @@ $ yarn add vue-material-modal-dialog
 Included as `<script>`:
 
 ```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vue-material-modal-dialog/dist/components.css">
 <script src="https://cdn.jsdelivr.net/npm/vue-material-modal-dialog/dist/components.min.js"></script>
 ```
 
 
-### Registering `MdModalDialog`
+## Usage
+
+### Registering the `MdModalDialog` component
 
 ```javascript 1.8
 import MdModalDialog from 'vue-material-modal-dialog'
