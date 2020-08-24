@@ -23,6 +23,6 @@ describe('<md-modal-dialog>', () => {
     })
 
 
-    it('can be tested', () => {
+    it('could be tested if <transition> were working in Vue Test Utils', () => {
     })
 })

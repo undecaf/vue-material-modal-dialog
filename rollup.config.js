@@ -12,8 +12,12 @@ function kebabToPascal(text) {
     return text.replace(/(^\w|-\w)/g, t => t.replace(/-/, '').toUpperCase());
 }
 
+function unscoped(name) {
+    return name.replace(/^(@.+?\/)?/, '')
+}
+
 const argv = minimist(process.argv.slice(2))
-const name = kebabToPascal(pkg.name)
+const name = kebabToPascal(unscoped(pkg.name))
 
 const baseConfig = {
     plugins: {
@@ -31,8 +35,8 @@ const baseConfig = {
         },
         postVue: [
             buble({
+                objectAssign: 'Object.assign',
                 transforms: {
-                    objectAssign: 'Object.assign',
                     dangerousForOf: true,
                 },
             }),
@@ -47,7 +51,7 @@ if (!argv.format || argv.format === 'es') {
     // ESM build to be used with webpack/rollup
     const esConfig = {
         ...baseConfig,
-        input: 'src/index.js',
+        input: 'src/md-modal-dialog/index.js',
         output: {
             file: pkg.module,
             format: 'esm',
@@ -80,7 +84,7 @@ if (!argv.format || argv.format === 'cjs') {
     // SSR build
     const umdConfig = {
         ...baseConfig,
-        input: 'src/index.js',
+        input: 'src/md-modal-dialog/index.js',
         output: {
             compact: true,
             file: pkg.main,
@@ -114,7 +118,7 @@ if (!argv.format || argv.format === 'iife') {
     // Browser build
     const unpkgConfig = {
         ...baseConfig,
-        input: 'src/wrapper.js',
+        input: 'src/md-modal-dialog/wrapper.js',
         output: {
             compact: true,
             file: pkg.unpkg,
