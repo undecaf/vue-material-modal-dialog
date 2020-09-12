@@ -2,8 +2,8 @@
   <md-modal-dialog
     id="dialog-a"
     @md-opened="event = 'md-opened'"
-    @md-clicked-outside="$modal.cancel('cancelled')"
-    @keydown.esc="$modal.cancel('cancelled')"
+    @md-clicked-outside="$modal.cancel('cancelled by outside click')"
+    @keydown.esc="$modal.cancel('cancelled by ESC')"
   >
     <md-dialog-title>Dialog A</md-dialog-title>
 
@@ -23,14 +23,14 @@
       <md-button
         id="cancel-button"
         class="md-raised"
-        @click="$modal.cancel('cancelled')"
+        @click="$modal.cancel('cancelled by button')"
       >
         Cancel
       </md-button>
       <md-button
         id="ok-button"
         class="md-raised"
-        @click="$modal.submit(123)"
+        @click="$modal.submit(input)"
       >
         OK
       </md-button>
@@ -50,7 +50,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-
-</style>

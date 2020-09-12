@@ -2,6 +2,7 @@
 
 ![Minified size](https://badgen.net/bundlephobia/min/vue-material-modal-dialog)
 ![Open issues](https://badgen.net/github/open-issues/undecaf/vue-material-modal-dialog)
+![Vulnerabilities](https://snyk.io/test/npm/vue-material-modal-dialog/badge.svg)
 ![Total downloads](https://badgen.net/npm/dt/vue-material-modal-dialog)
 ![License](https://badgen.net/npm/license/vue-material-modal-dialog)
 
@@ -15,16 +16,17 @@ multiplied by `v-for`.
 This repository provides a component, `MdModalDialog`, as a substitute for
 Vue Material's `MdDialog`. It offers the following features:
 
-+   `MdModalDialog`s are components that are _decoupled_ from other components
-+   They need only to be `import`ed but not to be placed in the `<template>`s of the components
-    using them
-+   Data is transferred between the context of the calling component and 
-    the context of the dialog
-+   At any point in time there is at most one single modal dialog instance
++   `MdModalDialog`s are completely _decoupled_ from other components
++   They only have to be `import`ed but not placed in the `<template>`s of other components
 +   `MdModalDialog` supports the same props and events as [`MdDialog`](https://vuematerial.io/components/dialog)
 +   Simple API: showing the dialog returns a promise which will be fulfilled or rejected
     when the dialog is closed
-+   Properties can be passed to a dialog in order to customize it at runtime
++   Data can be transferred between the calling component and the dialog
++   Properties can be passed for runtime customization of the dialog
++   At any point in time there will be at most one single `MdModalDialog` instance
+
+A simple online example [is available here](https://undecaf.github.io/vue-material-model-dialog/example/)
+([example source code](https://github.com/undecaf/vue-material-modal-dialog/blob/master/src/components/Demo.vue)).
 
 
 ## Installation
@@ -169,17 +171,18 @@ vm.$modal
 
 ### Returning a reason on `ESC` and outside clicks
 
-If
-+   clicking outside a dialog and/or pressing `ESC` cancels it,
++   If a dialog is configured to be closed by clicking outside and/or by `ESC`,
 +   _and_ if a reason is to be returned in these cases
 
-then this is one possible approach (`cancel()` is a component method):
+then this is one possible approach:
 
 ```vue
 <template>
-  <md-modal-dialog @md-clicked-outside="cancel()" @keydown.esc="cancel()">
+  <md-modal-dialog
+    @md-clicked-outside="$modal.cancel('byClick')"
+    @keydown.esc="$modal.cancel('byEsc')">
       ...
-    <md-button @click="cancel()">Cancel</md-button>
+    <md-button @click="$modal.cancel('byButton')">Cancel</md-button>
       ...
   </md-modal-dialog>
 </template>

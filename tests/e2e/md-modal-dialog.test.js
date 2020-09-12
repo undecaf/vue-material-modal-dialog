@@ -55,27 +55,31 @@ test('passes listeners to <md-dialog>', async t => {
 test('passes properties to the dialog', async t => {
     await t
         .click('#show-b')
-        .expect(Selector('#msg').textContent).eql('xyz')
+        .expect(Selector('#msg').textContent).eql('A message from the Demo component')
 })
 
 test('receives primitive return values from the dialog', async t => {
+    const text = String(Math.random())
     await t
         .click('#show-a')
         .pressKey('esc')
-        .expect(Selector('#returned').textContent).eql('cancelled')
+        .expect(Selector('#returned').textContent).eql('cancelled by ESC')
 
         .click('#show-a')
+        .typeText('.md-field input', text)
         .click('#ok-button')
-        .expect(Selector('#returned').textContent).eql('123')
+        .expect(Selector('#returned').textContent).eql(text)
 })
 
 test('receives objects returned from the dialog', async t => {
+    const text = String(Math.random())
     await t
         .click('#show-b')
         .click('#cancel-button')
         .expect(Selector('#returned').textContent).eql('{\n  "reason": "cancelled"\n}')
 
         .click('#show-b')
+        .typeText('.md-field input', text)
         .click('#ok-button')
-        .expect(Selector('#returned').textContent).eql('{\n  "result": 789\n}')
+        .expect(Selector('#returned').textContent).eql('{\n  "result": "' + text + '"\n}')
 })

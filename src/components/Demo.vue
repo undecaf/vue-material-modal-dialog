@@ -6,7 +6,7 @@
   >
     <md-app-toolbar class="md-primary md-dense md-layout md-alignment-center-space-between">
       <div class="md-layout-item md-title">
-        Testing &lt;md-modal-dialog&gt;
+        &lt;md-modal-dialog&gt; demo
       </div>
 
       <md-button
@@ -27,7 +27,7 @@
     </md-app-toolbar>
 
     <md-app-content>
-      <p>Returned from dialog: <span id="returned">{{ result }}</span></p>
+      <p class="md-title">Returned from dialog: <span id="returned">{{ result }}</span></p>
     </md-app-content>
   </md-app>
 </template>
@@ -48,8 +48,9 @@
         methods: {
             show(b) {
                 const dialog = b ? DialogB : DialogA
+                this.result = undefined
                 this.$modal
-                    .show(dialog, { msg: 'xyz' })
+                    .show(dialog, { msg: 'A message from the Demo component' })
                     .then(result => this.result = result)
                     .catch(reason => this.result = reason)
             }

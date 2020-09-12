@@ -1,6 +1,6 @@
 {
   "name": "vue-material-modal-dialog",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A reusable modal dialog for Vue Material",
   "keywords": [
     "vue",
@@ -26,6 +26,8 @@
     "prebuild": "rimraf dist/components.*",
     "build": "NODE_ENV=production rollup --config rollup.config.js",
     "postbuild": "node terser.js dist/components.*.js",
+    "prebuild:example": "rimraf docs/example",
+    "build:example": "vue-cli-service build --dest docs/example",
     "serve": "vue-cli-service serve",
     "lint": "eslint '{src,tests}/**/*.{js,vue}'",
     "lint:fix": "npm run lint -- --fix",

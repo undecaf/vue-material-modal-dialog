@@ -1,8 +1,8 @@
 import Vue from "vue"
 import VueMaterial from 'vue-material'
-import MdModalDialog from '@/../dist/components.esm'
+import MdModalDialog from '@/..'
 import '@/../dist/components.css'
-import Test from "@/components/Test.vue"
+import Deom from "@/components/Demo.vue"
 import "@/main.css"
 
 
@@ -14,5 +14,5 @@ Vue.use(MdModalDialog)
 
 new Vue({
     el: "#app",
-    render: h => h(Test),
+    render: h => h(Deom),
 })

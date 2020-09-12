@@ -29,7 +29,7 @@
       <md-button
         id="ok-button"
         class="md-raised"
-        @click="$modal.submit({ result: 789 })"
+        @click="$modal.submit({ result: input })"
       >
         OK
       </md-button>
@@ -48,7 +48,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-
-</style>
