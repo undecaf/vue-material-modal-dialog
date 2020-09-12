@@ -7,6 +7,9 @@ import '@/../dist/components.css'
 import MdModalDialogMock from './md-modal-dialog.mock.vue'
 
 
+Vue.config.productionTip = false
+Vue.config.devtools = false
+
 Vue.use(VueMaterial)
 Vue.use(MdModalDialog)
 

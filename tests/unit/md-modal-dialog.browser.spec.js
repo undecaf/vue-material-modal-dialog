@@ -7,12 +7,16 @@ Vue.config.devtools = false
 
 Vue.use(VueMaterial)
 
-window.Vue = Vue
-import('@/../dist/components.min')
-import('@/../dist/components.css')
-
 
 describe('<md-modal-dialog> (Browser)', () => {
+
+    before(async () => {
+        // Make Vue visible in the browser context
+        window.Vue = Vue
+        await import('@/../dist/components.min')
+        await import('@/../dist/components.css')
+    })
+
     it('is registered as Vue component', async () => {
         expect(Vue.options.components.MdModalDialog).to.be.a('function')
     })
