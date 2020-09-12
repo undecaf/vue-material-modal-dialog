@@ -25,7 +25,7 @@ Vue Material's `MdDialog`. It offers the following features:
 +   Properties can be passed for runtime customization of the dialog
 +   At any point in time there will be at most one single `MdModalDialog` instance
 
-A simple online example [is available here](https://undecaf.github.io/vue-material-model-dialog/example/)
+A simple online example [is available here](https://undecaf.github.io/vue-material-modal-dialog/example/)
 ([example source code](https://github.com/undecaf/vue-material-modal-dialog/blob/master/src/components/Demo.vue)).
 
 
