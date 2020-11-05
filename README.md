@@ -9,19 +9,19 @@
 
 In [Vue Material](https://vuematerial.io/), components showing
 a dialog have to _contain_ an [`MdDialog`](https://vuematerial.io/components/dialog),
-or a component based on an `MdDialog`. This couples the modal dialog to the surrounding component
+or a component based on `MdDialog`. This couples the modal dialog to the surrounding component
 and creates a separate dialog instance/comment placeholder for each occurrence, eventually
 multiplied by `v-for`.
 
-This repository provides a component, `MdModalDialog`, as a substitute for
-Vue Material's `MdDialog`. It offers the following features:
+This repository provides a component, `MdModalDialog`, that avoids this situation.
+It acts as a substitute for Vue Material's `MdDialog`, offering the following additional features:
 
 +   `MdModalDialog`s are completely _decoupled_ from other components
-+   They only have to be `import`ed but not placed in the `<template>`s of other components
++   They only have to be `import`ed but not to be placed in the `<template>` of other components
 +   `MdModalDialog` supports the same props and events as [`MdDialog`](https://vuematerial.io/components/dialog)
 +   Simple API: showing the dialog returns a promise which will be fulfilled or rejected
     when the dialog is closed
-+   Data can be transferred between the calling component and the dialog
++   Input data can be transferred from the dialog to the calling component
 +   Properties can be passed for runtime customization of the dialog
 +   At any point in time there will be at most one single `MdModalDialog` instance
 
@@ -64,7 +64,7 @@ Vue.use(MdModalDialog)
 
 `MdModalDialog` provides these functions:
 
-#### `vm.$modal.show(dialog, [props])`
+#### `vm.$modal.show(dialog, [props])`, `Vue.modal.show(dialog, [props])`
 
 +   `{Vue component} dialog`
 +   `{Object} [props]`
@@ -76,14 +76,14 @@ Returns a `Promise` that can be fulfilled by `vm.$modal.submit()` and
 rejected by `vm.$modal.cancel()`. Either function closes the dialog.
 
 
-#### `vm.$modal.submit([result])`
+#### `vm.$modal.submit([result])`, `Vue.modal.submit([result])`
 
 +   `{Any} [result]`
 
 Closes the dialog and fulfills the `Promise`; can return a `result`.
 
 
-#### `vm.$modal.cancel([reason])`
+#### `vm.$modal.cancel([reason])`, `Vue.modal.cancel([reason])`
 
 +   `{Any} [reason]`
 
