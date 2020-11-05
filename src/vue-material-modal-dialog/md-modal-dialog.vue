@@ -47,12 +47,12 @@ export default {
         document.body.appendChild(container.$el)
 
 
-        Vue.modal = {
+        Vue.$modal = {
             _active: false,
             _slotProps: {},
         }
 
-        Vue.prototype.$modal = Vue.modal
+        Vue.prototype.$modal = Vue.$modal
 
         Vue.observable(Vue.prototype.$modal)
 

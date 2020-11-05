@@ -19,5 +19,7 @@ describe('<md-modal-dialog> (Browser)', () => {
 
     it('is registered as Vue component', async () => {
         expect(Vue.options.components.MdModalDialog).to.be.a('function')
+        expect(Vue.$modal).to.be.a('object')
+        expect(Vue.prototype.$modal).to.be.a('object')
     })
 })

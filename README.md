@@ -64,7 +64,7 @@ Vue.use(MdModalDialog)
 
 `MdModalDialog` provides these functions:
 
-#### `vm.$modal.show(dialog, [props])`, `Vue.modal.show(dialog, [props])`
+#### `vm.$modal.show(dialog, [props])`, `Vue.$modal.show(dialog, [props])`
 
 +   `{Vue component} dialog`
 +   `{Object} [props]`
@@ -76,14 +76,14 @@ Returns a `Promise` that can be fulfilled by `vm.$modal.submit()` and
 rejected by `vm.$modal.cancel()`. Either function closes the dialog.
 
 
-#### `vm.$modal.submit([result])`, `Vue.modal.submit([result])`
+#### `vm.$modal.submit([result])`, `Vue.$modal.submit([result])`
 
 +   `{Any} [result]`
 
 Closes the dialog and fulfills the `Promise`; can return a `result`.
 
 
-#### `vm.$modal.cancel([reason])`, `Vue.modal.cancel([reason])`
+#### `vm.$modal.cancel([reason])`, `Vue.$modal.cancel([reason])`
 
 +   `{Any} [reason]`
 
