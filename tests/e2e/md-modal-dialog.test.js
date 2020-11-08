@@ -55,7 +55,8 @@ test('passes listeners to <md-dialog>', async t => {
 test('passes properties to the dialog', async t => {
     await t
         .click('#show-b')
-        .expect(Selector('#msg').textContent).eql('A message from the Demo component')
+        .expect(Selector('#msg1').textContent).eql('A message from the Demo component')
+        .expect(Selector('#msg2').textContent).eql('A message from the Demo component')
 })
 
 test('receives primitive return values from the dialog', async t => {

@@ -7,7 +7,8 @@
     <md-dialog-title>Dialog B</md-dialog-title>
 
     <md-dialog-content>
-      <p>Message: <span id="msg">{{ msg }}</span></p>
+      <p>From <code>v-slot</code>: <span id="msg1">{{ msg }}</span></p>
+      <p>From <code>$modal.slotProps</code>: <span id="msg2">{{ $modal.slotProps.msg }}</span></p>
 
       <md-field>
         <label>Some input</label>

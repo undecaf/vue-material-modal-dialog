@@ -5,7 +5,7 @@
     v-on="$listeners"
     @md-closed="$modal.cancel()"
   >
-    <slot v-bind="$modal._slotProps" />
+    <slot v-bind="$modal.slotProps" />
   </md-dialog>
 </template>
 
@@ -49,7 +49,7 @@ export default {
 
         Vue.$modal = {
             _active: false,
-            _slotProps: {},
+            slotProps: {},
         }
 
         Vue.prototype.$modal = Vue.$modal
@@ -57,7 +57,7 @@ export default {
         Vue.observable(Vue.prototype.$modal)
 
         Vue.prototype.$modal.show = function(dialog, slotProps = {}) {
-            this._slotProps = slotProps
+            this.slotProps = slotProps
             container.dialog = dialog
 
             return new Promise((resolve, reject) => {

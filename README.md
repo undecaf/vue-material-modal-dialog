@@ -19,6 +19,8 @@ It acts as a substitute for Vue Material's `MdDialog`, offering the following ad
 +   `MdModalDialog`s are completely _decoupled_ from other components
 +   They only have to be `import`ed but not to be placed in the `<template>` of other components
 +   `MdModalDialog` supports the same props and events as [`MdDialog`](https://vuematerial.io/components/dialog)
++   You can show `MdModalDialog`s from anywhere in your app (e.g. from a [Vuex](https://vuex.vuejs.org/) action),
+    not only from component methods
 +   Simple API: showing the dialog returns a promise which will be fulfilled or rejected
     when the dialog is closed
 +   Input data can be transferred from the dialog to the calling component
@@ -92,7 +94,7 @@ Closes the dialog and rejects the `Promise`; can return a `reason` for rejection
 
 ### Creating modal dialog components
 
-Just use `MdModalDialog` in the same way as `MdDialog` (without `md-active`),
+Just use `MdModalDialog` in the same way as you would use `MdDialog` (without `md-active`),
 for example for an input dialog:
 
 ```vue
@@ -140,8 +142,10 @@ vm.$modal
 
 ### Passing properties to modal dialogs
 
-Let's extend the example with a configurable upper limit for the guessed number.
-Use `v-slot` to make `GuessDialog` accept property `max`:
+Since `MdModalDialog`s are not placed like regular components, no `props` can be passed to them. 
+However, using `v-slot`, we can pass properties to such a dialog every time it is shown.
+ 
+Let us extend the example with a configurable upper limit `max` for the guessed number:
 
 ```vue
 <template>
@@ -167,6 +171,9 @@ vm.$modal
     .then(...)
     .catch(...)
 ```
+
+In the `methods` of the modal dialog component, such properties can be accessed through
+the object `vm.$modal.slotProps`.
 
 
 ### Returning a reason on `ESC` and outside clicks
