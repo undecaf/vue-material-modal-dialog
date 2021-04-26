@@ -1,22 +1,25 @@
 <template>
   <md-modal-dialog
     id="dialog-a"
-    @md-opened="event = 'md-opened'"
+    @md-opened="event = true"
     @md-clicked-outside="$modal.cancel('cancelled by outside click')"
     @keydown.esc="$modal.cancel('cancelled by ESC')"
   >
     <md-dialog-title>Dialog A</md-dialog-title>
 
     <md-dialog-content>
-      <p>Event: <span id="event">{{ event }}</span></p>
+      <p><code>md-opened</code> event detected: <span id="event">{{ event }}</span></p>
 
       <md-field>
-        <label>Some input</label>
+        <label>Some input, returned as string</label>
         <md-input
+          id="input-a"
           v-model="input"
           type="text"
         />
       </md-field>
+
+      <p>This dialog can be cancelled also by <code>ESC</code> and by an outside click.</p>
     </md-dialog-content>
 
     <md-dialog-actions>
@@ -45,7 +48,7 @@ export default {
     data() {
         return {
             input: undefined,
-            event: undefined,
+            event: false,
         }
     },
 }

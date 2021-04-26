@@ -27,6 +27,10 @@
     </md-app-toolbar>
 
     <md-app-content>
+      <md-field>
+        <label>Message passed to dialog B</label>
+        <md-input type="text" v-model="msg" />
+      </md-field>
       <p class="md-title">Returned from dialog: <span id="returned">{{ result }}</span></p>
     </md-app-content>
   </md-app>
@@ -41,6 +45,7 @@
 
         data() {
             return {
+                msg: 'Message from the caller',
                 result: undefined,
             }
         },
@@ -50,7 +55,7 @@
                 const dialog = b ? DialogB : DialogA
                 this.result = undefined
                 this.$modal
-                    .show(dialog, { msg: 'A message from the Demo component' })
+                    .show(dialog, { msg: this.msg })
                     .then(result => this.result = result)
                     .catch(reason => this.result = reason)
             }
